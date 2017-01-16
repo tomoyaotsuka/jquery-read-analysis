@@ -1,6 +1,6 @@
 {
   "name": "jquery-read-analysis",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "author": "Tomoya Otsuka",
   "scripts": {
     "start": "npm-run-all -p build server watch",

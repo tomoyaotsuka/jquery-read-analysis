@@ -13,9 +13,9 @@ $('#area').read({
   label:    "label name",
   position: "default",
   runtime:  5000,
-  debug:    false,
-  gtm:      false,
-  touch:    false
+  gtm:      true,
+  touch:    false,
+  debug:    false
 });
 ```
 
@@ -26,9 +26,9 @@ $('#area').read({
 | position | "default"     | 指定エリアがビュー内の1/2以上を占める場合を閲覧とみなす     |
 |          | "cover"       | 指定エリアが表示された場合を閲覧とみなす                  |
 | runtime  | 5000(default) | 指定エリアが設定ビュー内に入ってからイベント発火までのミリ秒 |
-| debug    | true          | イベント発火とリセット時をコンソールに表示                |
-| gtm      | true          | GTM使用時                                           |
+| gtm      | false         | ga('send', 'event', ~ )を使用する場合                |
 | touch    | true          | touchend後の追加発火                                 |      
+| debug    | true          | イベント発火とリセット時をコンソールに表示                |
 
 
 ## License

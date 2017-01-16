@@ -1,7 +1,7 @@
 (function e(t,n,r){function s(o,u){if(!n[o]){if(!t[o]){var a=typeof require=="function"&&require;if(!u&&a)return a(o,!0);if(i)return i(o,!0);var f=new Error("Cannot find module '"+o+"'");throw f.code="MODULE_NOT_FOUND",f}var l=n[o]={exports:{}};t[o][0].call(l.exports,function(e){var n=t[o][1][e];return s(n?n:e)},l,l.exports,e,t,n,r)}return n[o].exports}var i=typeof require=="function"&&require;for(var o=0;o<r.length;o++)s(r[o]);return s})({1:[function(require,module,exports){
 "use strict";
 
-/*! jquery-read-analysis v0.0.1 | (c) 2017, TomoyaOtsuka | MIT Licence */
+/*! jquery-read-analysis v0.0.2 | (c) 2017, TomoyaOtsuka | MIT Licence */
 (function ($) {
 
   var methods = {
@@ -22,7 +22,7 @@
       label: "label",
       position: "default",
       runtime: 5000,
-      gtm: false,
+      gtm: true,
       touch: false,
       debug: false
     }, option);
@@ -135,7 +135,7 @@
 
     var scrollClear = function scrollClear() {
       if (settings.debug) {
-        console.log('<' + $this.attr('class') + '> event clear.');
+        console.log("Cancel: " + $this.attr('class') + " event clear.");
       }
       clearTimeout(scrollTimer);
     };
@@ -143,7 +143,7 @@
     var scrollSuccess = function scrollSuccess() {
       scrollFlag = false;
       clearScrollFlag = false;
-      transmit();
+      transmit(false);
     };
 
     var touchRun = function touchRun() {
@@ -154,7 +154,7 @@
 
     var touchClear = function touchClear() {
       if (settings.debug) {
-        console.log('<' + $this.attr('class') + '> event clear.');
+        console.log("Cancel: " + $this.attr('class') + " event clear.");
       }
       clearTimeout(touchTimer);
     };
@@ -162,7 +162,7 @@
     var touchSuccess = function touchSuccess() {
       touchFlag = false;
       clearTouchFlag = false;
-      transmit();
+      transmit(true);
     };
 
     /**
@@ -170,10 +170,10 @@
      * @function
      */
 
-    var transmit = function transmit() {
+    var transmit = function transmit(flag) {
       if (settings.debug) {
+        var message = "Success: " + $this.attr('class') + ", " + (flag ? settings.category + '-touch' : settings.category) + ", " + settings.action + ", " + settings.label;
         console.log(message);
-        console.log($this.attr('class'), settings.category, settings.action, settings.label);
       } else {
         if (settings.gtm) {
           dataLayer.push({ 'event': 'ga-dl-push', 'ga_category': settings.category, 'ga_action': settings.action, 'ga_label': settings.label });

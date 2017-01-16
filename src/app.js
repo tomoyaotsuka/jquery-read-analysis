@@ -1,4 +1,4 @@
-/*! jquery-read-analysis v0.0.1 | (c) 2017, TomoyaOtsuka | MIT Licence */
+/*! jquery-read-analysis v0.0.2 | (c) 2017, TomoyaOtsuka | MIT Licence */
 (function($) {
 
   const methods = {
@@ -30,7 +30,7 @@
       label:    "label",
       position: "default",
       runtime:  5000,
-      gtm:      false,
+      gtm:      true,
       touch:    false,
       debug:    false
     }, option);
@@ -156,14 +156,14 @@
     };
 
     const scrollClear = () => {
-      if ( settings.debug ) { console.log( '<' + $this.attr('class') + '> event clear.' ); }
+      if ( settings.debug ) { console.log( `Cancel: ${$this.attr('class')} event clear.` ); }
       clearTimeout( scrollTimer );
     };
 
     const scrollSuccess = () => {
       scrollFlag = false;
       clearScrollFlag = false;
-      transmit();
+      transmit( false );
     };
 
     const touchRun = () => {
@@ -171,14 +171,14 @@
     };
 
     const touchClear = () => {
-      if ( settings.debug ) { console.log( '<' + $this.attr('class') + '> event clear.' ); }
+      if ( settings.debug ) { console.log( `Cancel: ${$this.attr('class')} event clear.` ); }
       clearTimeout( touchTimer );
     };
 
     const touchSuccess = () => {
       touchFlag = false;
       clearTouchFlag = false;
-      transmit();
+      transmit( true );
     };
 
 
@@ -188,17 +188,17 @@
      * @function
      */
 
-    const transmit = () => {
+    const transmit = ( flag ) => {
       if ( settings.debug ) {
+        const message = `Success: ${$this.attr('class')}, ${ flag ? settings.category+'-touch' : settings.category }, ${settings.action}, ${settings.label}`;
         console.log( message );
-        console.log( $this.attr('class'), settings.category, settings.action, settings.label );
       }
       else {
         if ( settings.gtm ) {
           dataLayer.push({ 'event': 'ga-dl-push', 'ga_category': settings.category, 'ga_action': settings.action, 'ga_label': settings.label });
         }
         else {
-          ga('send', 'event', settings.category, settings.action, settings.label, {'nonInteraction':true});
+          ga('send', 'event', settings.category, settings.action, settings.label, { 'nonInteraction': true });
         }
       }
     };
