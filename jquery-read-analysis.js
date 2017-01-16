@@ -22,7 +22,7 @@
       label: "label",
       position: "default",
       runtime: 5000,
-      gtm: false,
+      gtm: true,
       touch: false,
       debug: false
     }, option);
@@ -135,7 +135,7 @@
 
     var scrollClear = function scrollClear() {
       if (settings.debug) {
-        console.log('<' + $this.attr('class') + '> event clear.');
+        console.log("Cancel: " + $this.attr('class') + " event clear.");
       }
       clearTimeout(scrollTimer);
     };
@@ -143,7 +143,7 @@
     var scrollSuccess = function scrollSuccess() {
       scrollFlag = false;
       clearScrollFlag = false;
-      transmit();
+      transmit(false);
     };
 
     var touchRun = function touchRun() {
@@ -154,7 +154,7 @@
 
     var touchClear = function touchClear() {
       if (settings.debug) {
-        console.log('<' + $this.attr('class') + '> event clear.');
+        console.log("Cancel: " + $this.attr('class') + " event clear.");
       }
       clearTimeout(touchTimer);
     };
@@ -162,7 +162,7 @@
     var touchSuccess = function touchSuccess() {
       touchFlag = false;
       clearTouchFlag = false;
-      transmit();
+      transmit(true);
     };
 
     /**
@@ -170,9 +170,9 @@
      * @function
      */
 
-    var transmit = function transmit() {
+    var transmit = function transmit(flag) {
       if (settings.debug) {
-        var message = "target: " + $this.attr('class') + ", category: " + settings.category + ", action: " + settings.action + ", label: " + settings.label;
+        var message = "Success: " + $this.attr('class') + ", " + (flag ? settings.category + '-touch' : settings.category) + ", " + settings.action + ", " + settings.label;
         console.log(message);
       } else {
         if (settings.gtm) {
