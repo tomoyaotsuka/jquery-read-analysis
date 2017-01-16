@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>Read Analysis</title>
+  <meta name="viewport" content="initial-scale=1">
+  <style>
+  [class^="section-"] { height: 480px; margin: 0 0 10px; padding: 10px; }
+  .section-1 { background: #0D19A3; }
+  .section-2 { background: #CB1B45; }
+  .section-3 { background: #DB4D6D; }
+  .section-4 { background: #EFBB24; }
+  .section-5 { background: #00896C; }
+  h2 { margin: 0; color: #fff; font-size: 13px; }
+  </style>
+  <script src="./scripts/jquery.js"></script>
+  <script src="./scripts/jquery-read-analysis.js"></script>
+  <script>
+  $(function() {
+    $('.wrapper').read({ runtime: 5000, gtm: true, debug: true });
+    $('.section-1').read({ runtime: 3000, gtm: true, debug: true });
+    $('.section-2').read({ runtime: 3000, gtm: true, debug: true });
+    $('.section-3').read({ runtime: 3000, gtm: true, touch: true, debug: true});
+    $('.section-4').read({ runtime: 3000, gtm: true, touch: true, debug: true});
+    $('.section-5').read({ runtime: 3000, gtm: true, debug: true });
+  });
+  </script>
+</head>
+<body>
+  <section class="wrapper">
+    <section class="section-1" id="section1"><h2>Section1</h2></section>
+    <section class="section-2" id="section2"><h2>Section2</h2></section>
+    <section class="section-3" id="section3"><h2>Section3</h2></section>
+    <section class="section-4" id="section4"><h2>Section4</h2></section>
+    <section class="section-5" id="section5"><h2>Section5</h2></section>
+  </section>
+</body>
+</html>
