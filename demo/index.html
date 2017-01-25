@@ -5,29 +5,48 @@
   <title>Read Analysis</title>
   <meta name="viewport" content="initial-scale=1">
   <style>
+  body { color: #fff; font-size: 11px; letter-spacing: 0.1em; }
+  h2 { margin: 0; font-weight: normal; font-size: 18px; }
+  h3 { margin: 0; font-weight: normal; font-size: 13px; }
+  p  { margin: 0; }
   [class^="section-"] { height: 480px; margin: 0 0 10px; padding: 10px; }
   .section-1 { background: #0D19A3; }
   .section-2 { background: #CB1B45; }
   .section-3 { background: #DB4D6D; }
   .section-4 { background: #EFBB24; }
   .section-5 { background: #00896C; }
-  h2 { margin: 0; color: #fff; font-size: 13px; }
+  .switch-1, .switch-2 { display: none; }
+  .switch-1:checked + .switch-label, .switch-2:checked + .switch-label { opacity: 1; }
+  .switch-1:checked ~ .tabs > .tab-1 { display: block; }
+  .switch-2:checked ~ .tabs > .tab-2 { display: block; }
+  .switch-label { display: inline-block; opacity: .5; width: 100px; height: 40px; margin: 0 5px 10px 0; padding: 10px; background: #00896C; }
+  .tabs { position: relative; margin: 0 0 10px; padding: 10px; background: #00896C; }
+  [class^="tab-"] { display: none; height: 480px; }
   </style>
   <script src="./scripts/jquery.js"></script>
   <script src="./scripts/jquery-read-analysis.js"></script>
   <script>
   $(function() {
-    $('.wrapper').read({ runtime: 5000, gtm: true, debug: true });
-    $('.section-1').read({ runtime: 3000, gtm: true, debug: true });
-    $('.section-2').read({ runtime: 3000, gtm: true, debug: true });
-    $('.section-3').read({ runtime: 3000, gtm: true, touch: true, debug: true});
-    $('.section-4').read({ runtime: 3000, gtm: true, touch: true, debug: true});
-    $('.section-5').read({ runtime: 3000, gtm: true, debug: true });
+    $('#wrapper').read({ runtime: 5000, gtm: true, debug: true });
+    $('#section1').read({ runtime: 3000, gtm: true, debug: true });
+    $('#section2').read({ runtime: 3000, gtm: true, debug: true });
+    $('#section3').read({ runtime: 3000, gtm: true, touch: true, debug: true});
+    $('#section4').read({ runtime: 3000, gtm: true, touch: true, debug: true});
+    $('#section5').read({ runtime: 3000, gtm: true, debug: true });
+    $('#tab1').read({ runtime: 3000, gtm: true, debug: true });
+    $('#tab2').read({ runtime: 3000, gtm: true, debug: true });
   });
   </script>
 </head>
 <body>
-  <section class="wrapper">
+  <input type="radio" name="switch" class="switch-1" id="switch1" checked><label for="switch1" class="switch-label">Tab1</label>
+  <input type="radio" name="switch" class="switch-2" id="switch2"><label for="switch2" class="switch-label">Tab2</label>
+  <section class="tabs" id="tabs">
+    <h2>Tabs</h2>
+    <section class="tab-1" id="tab1"><h3>Tab1</h3><p>Tab1 content.</p></section>
+    <section class="tab-2" id="tab2"><h3>Tab2</h3><p>Tab2 content.</p></section>
+  </section>
+  <section class="wrapper" id="wrapper">
     <section class="section-1" id="section1"><h2>Section1</h2></section>
     <section class="section-2" id="section2"><h2>Section2</h2></section>
     <section class="section-3" id="section3"><h2>Section3</h2></section>

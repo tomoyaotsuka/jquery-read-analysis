@@ -1,4 +1,4 @@
-/*! jquery-read-analysis v0.0.2 | (c) 2017, TomoyaOtsuka | MIT Licence */
+/*! jquery-read-analysis v0.0.3 | (c) 2017, TomoyaOtsuka | MIT Licence */
 (function($) {
 
   const methods = {
@@ -22,7 +22,7 @@
     }
   };
 
-  $.fn.read = function( option ) {
+  $.fn.read = function ( option ) {
 
     let settings = $.extend( true, {
       category: "category",
@@ -57,7 +57,7 @@
      * Window on load時の初期化
      */
 
-    $window.on( 'load pjax:load', function() {
+    $window.on( 'load pjax:load', function () {
       collectSize();
       calcSize();
     });
@@ -68,9 +68,9 @@
      * スクロールに関する読了判定
      */
 
-    $window.on( 'scroll', function() {
+    $window.on( 'scroll', function () {
       let scrolledValue = $(this).scrollTop();
-      if  (scrolledValue > decisionArea.top && scrolledValue < decisionArea.bottom && scrollFlag ) {
+      if ( $this.is(':visible') && scrolledValue > decisionArea.top && scrolledValue < decisionArea.bottom && scrollFlag ) {
         scrollFlag = false;
         clearScrollFlag = true;
         scrollRun();
@@ -91,7 +91,7 @@
      */
 
     if ( settings.touch && methods.ua().Mobile ) {
-      $window.on( 'touchend', function() {
+      $window.on( 'touchend', function () {
         let value = $(this).scrollTop();
           if ( value > decisionArea.top && value < decisionArea.bottom && touchFlag ) {
             touchFlag = false;
@@ -152,7 +152,7 @@
      */
 
     const scrollRun = () => {
-      scrollTimer = setTimeout( function() { scrollSuccess(); }, settings.runtime );
+      scrollTimer = setTimeout( function () { scrollSuccess(); }, settings.runtime );
     };
 
     const scrollClear = () => {
@@ -167,7 +167,7 @@
     };
 
     const touchRun = () => {
-      touchTimer = setTimeout( function() { touchSuccess(); }, settings.runtime );
+      touchTimer = setTimeout( function () { touchSuccess(); }, settings.runtime );
     };
 
     const touchClear = () => {
